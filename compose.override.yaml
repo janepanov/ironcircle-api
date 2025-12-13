@@ -2,5 +2,5 @@ services:
   ###> doctrine/mongodb-odm-bundle ###
   mongodb:
     ports:
-      - "27018"
+      - "27018:27017"
 ###< doctrine/mongodb-odm-bundle ###

@@ -17,6 +17,39 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/'
+        exclude:
+            - '../src/*/Domain/Model/'
+            - '../src/*/Domain/ValueObject/'
+            - '../src/*/Domain/Event/'
+            - '../src/*/Domain/Exception/'
+            - '../src/*/Infrastructure/Doctrine/Document/'
+            - '../src/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # Explicitly register domain repositories
+    # User
+    App\User\Domain\Repository\UserRepositoryInterface:
+        class: App\User\Infrastructure\Doctrine\Repository\UserRepository
+        
+    # Circle
+    App\Circle\Domain\Repository\CircleRepositoryInterface:
+        class: App\Circle\Infrastructure\Doctrine\Repository\CircleRepository
+        
+    # Post
+    App\Post\Domain\Repository\PostRepositoryInterface:
+        class: App\Post\Infrastructure\Doctrine\Repository\PostRepository
+        
+    # Comment
+    App\Comment\Domain\Repository\CommentRepositoryInterface:
+        class: App\Comment\Infrastructure\Doctrine\Repository\CommentRepository
+        
+    # Vote
+    App\Vote\Domain\Repository\VoteRepositoryInterface:
+        class: App\Vote\Infrastructure\Doctrine\Repository\VoteRepository
+
+    # Command & Query Handlers (will be added as we create them)
+    # Commands are tagged for command.bus, Queries for query.bus
+    # Example:
+    # App\User\Application\Command\:
+    #     resource: '../src/User/Application/Command/*Handler.php'
+    #     tags:
+    #         - { name: messenger.message_handler, bus: command.bus }

@@ -3,16 +3,18 @@ services:
 ###> doctrine/mongodb-odm-bundle ###
   mongodb:
     # In production, you may want to use a managed database service
-    image: mongodb/mongodb-atlas-local:latest
+    image: mongo:7.0
+    restart: unless-stopped
     environment:
-      - MONGODB_INITDB_DATABASE=${MONGODB_DB:-app}
+      MONGO_INITDB_DATABASE: ${MONGODB_DB:-ironcircle}
       # You should definitely set a root username and password in production
-      - MONGODB_INITDB_ROOT_USERNAME=${MONGODB_USERNAME:-}
-      - MONGODB_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD:-}
+      # MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME:-root}
+      # MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD:-password}
     volumes:
       - mongodb_data:/data/db:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/mongodb/data:/data/db:rw
+    command: mongod --port 27017
 ###< doctrine/mongodb-odm-bundle ###
 
 volumes:

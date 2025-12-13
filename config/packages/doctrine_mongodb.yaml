@@ -8,11 +8,33 @@ doctrine_mongodb:
     default_database: '%env(resolve:MONGODB_DB)%'
     document_managers:
         default:
-            auto_mapping: true
+            auto_mapping: false
             mappings:
-                App:
-                    dir: '%kernel.project_dir%/src/Document'
-                    prefix: 'App\Document'
+                User:
+                    type: attribute
+                    dir: '%kernel.project_dir%/src/User/Infrastructure/Doctrine/Document'
+                    prefix: 'App\User\Infrastructure\Doctrine\Document'
+                    is_bundle: false
+                Circle:
+                    type: attribute
+                    dir: '%kernel.project_dir%/src/Circle/Infrastructure/Doctrine/Document'
+                    prefix: 'App\Circle\Infrastructure\Doctrine\Document'
+                    is_bundle: false
+                Post:
+                    type: attribute
+                    dir: '%kernel.project_dir%/src/Post/Infrastructure/Doctrine/Document'
+                    prefix: 'App\Post\Infrastructure\Doctrine\Document'
+                    is_bundle: false
+                Comment:
+                    type: attribute
+                    dir: '%kernel.project_dir%/src/Comment/Infrastructure/Doctrine/Document'
+                    prefix: 'App\Comment\Infrastructure\Doctrine\Document'
+                    is_bundle: false
+                Vote:
+                    type: attribute
+                    dir: '%kernel.project_dir%/src/Vote/Infrastructure/Doctrine/Document'
+                    prefix: 'App\Vote\Infrastructure\Doctrine\Document'
+                    is_bundle: false
 
 when@prod:
     doctrine_mongodb:
