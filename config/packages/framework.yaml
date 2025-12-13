@@ -1,7 +1,7 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
-    secret: '%env(APP_SECRET)%'
-    
+    secret: "%env(APP_SECRET)%"
+
     # Disable sessions for stateless API
     session:
         enabled: false
@@ -9,7 +9,7 @@ framework:
     # Enable request format handling
     http_method_override: false
     handle_all_throwables: true
-    
+
     # PHP errors are converted to exceptions automatically
     php_errors:
         log: true

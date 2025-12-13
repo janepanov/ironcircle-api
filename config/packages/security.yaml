@@ -5,24 +5,24 @@ security:
             algorithm: argon2id
             memory_cost: 65536
             time_cost: 4
-            
+
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         # User provider will be implemented later when we create the Security User entity
         app_user_provider:
             id: App\User\Infrastructure\Security\UserProvider
-            
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-            
+
         # Public endpoints (login, register)
         public:
             pattern: ^/api/(auth/login|auth/register)
             stateless: true
             security: false
-            
+
         # Protected API endpoints
         api:
             pattern: ^/api

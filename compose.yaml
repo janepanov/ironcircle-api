@@ -1,6 +1,5 @@
-
 services:
-###> doctrine/mongodb-odm-bundle ###
+  ###> doctrine/mongodb-odm-bundle ###
   mongodb:
     # In production, you may want to use a managed database service
     image: mongo:7.0
@@ -18,6 +17,6 @@ services:
 ###< doctrine/mongodb-odm-bundle ###
 
 volumes:
-###> doctrine/mongodb-odm-bundle ###
+  ###> doctrine/mongodb-odm-bundle ###
   mongodb_data:
 ###< doctrine/mongodb-odm-bundle ###

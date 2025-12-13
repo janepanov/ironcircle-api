@@ -4,44 +4,44 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    env(MONGODB_URI): ''
-    env(MONGODB_DB): ''
+    env(MONGODB_URI): ""
+    env(MONGODB_DB): ""
 
 services:
     # default configuration for services in *this* file
     _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
+        autowire: true # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
-        resource: '../src/'
+        resource: "../src/"
         exclude:
-            - '../src/*/Domain/Model/'
-            - '../src/*/Domain/ValueObject/'
-            - '../src/*/Domain/Event/'
-            - '../src/*/Domain/Exception/'
-            - '../src/*/Infrastructure/Doctrine/Document/'
-            - '../src/Kernel.php'
+            - "../src/*/Domain/Model/"
+            - "../src/*/Domain/ValueObject/"
+            - "../src/*/Domain/Event/"
+            - "../src/*/Domain/Exception/"
+            - "../src/*/Infrastructure/Doctrine/Document/"
+            - "../src/Kernel.php"
 
     # Explicitly register domain repositories
     # User
     App\User\Domain\Repository\UserRepositoryInterface:
         class: App\User\Infrastructure\Doctrine\Repository\UserRepository
-        
+
     # Circle
     App\Circle\Domain\Repository\CircleRepositoryInterface:
         class: App\Circle\Infrastructure\Doctrine\Repository\CircleRepository
-        
+
     # Post
     App\Post\Domain\Repository\PostRepositoryInterface:
         class: App\Post\Infrastructure\Doctrine\Repository\PostRepository
-        
+
     # Comment
     App\Comment\Domain\Repository\CommentRepositoryInterface:
         class: App\Comment\Infrastructure\Doctrine\Repository\CommentRepository
-        
+
     # Vote
     App\Vote\Domain\Repository\VoteRepositoryInterface:
         class: App\Vote\Infrastructure\Doctrine\Repository\VoteRepository
