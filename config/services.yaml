@@ -46,10 +46,19 @@ services:
     App\Vote\Domain\Repository\VoteRepositoryInterface:
         class: App\Vote\Infrastructure\Doctrine\Repository\VoteRepository
 
-    # Command & Query Handlers (will be added as we create them)
-    # Commands are tagged for command.bus, Queries for query.bus
-    # Example:
-    # App\User\Application\Command\:
-    #     resource: '../src/User/Application/Command/*Handler.php'
-    #     tags:
-    #         - { name: messenger.message_handler, bus: command.bus }
+    # Fractal Manager for API transformations
+    League\Fractal\Manager:
+        class: League\Fractal\Manager
+
+    # Command & Query Handlers
+    # User Commands
+    App\User\Application\Command\RegisterUser\RegisterUserHandler:
+        arguments:
+            $eventBus: "@messenger.default_bus"
+        tags:
+            - { name: messenger.message_handler, bus: command.bus }
+
+    # User Queries
+    App\User\Application\Query\AuthenticateUser\AuthenticateUserHandler:
+        tags:
+            - { name: messenger.message_handler, bus: query.bus }

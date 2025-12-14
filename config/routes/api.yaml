@@ -1,0 +1,10 @@
+# Authentication Routes
+register:
+    path: /api/auth/register
+    controller: App\User\Infrastructure\Http\Controller\RegisterController
+    methods: [POST]
+
+login:
+    path: /api/auth/login
+    controller: App\User\Infrastructure\Http\Controller\LoginController
+    methods: [POST]
