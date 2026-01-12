@@ -72,3 +72,6 @@
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
+
+# Project specification
+/specs/*.md
