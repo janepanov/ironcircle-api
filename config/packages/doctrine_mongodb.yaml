@@ -1,31 +1,63 @@
 doctrine_mongodb:
-    auto_generate_proxy_classes: true
-    auto_generate_hydrator_classes: true
-    connections:
-        default:
-            server: '%env(resolve:MONGODB_URI)%'
-            options: {}
-    default_database: '%env(resolve:MONGODB_DB)%'
-    document_managers:
-        default:
-            auto_mapping: true
-            mappings:
-                App:
-                    dir: '%kernel.project_dir%/src/Document'
-                    prefix: 'App\Document'
+  auto_generate_proxy_classes: true
+  auto_generate_hydrator_classes: true
+  connections:
+    default:
+      server: "%env(resolve:MONGODB_URI)%"
+      options: {}
+  default_database: "%env(resolve:MONGODB_DB)%"
+  document_managers:
+    default:
+      auto_mapping: false
+      mappings:
+        User:
+          type: attribute
+          dir: "%kernel.project_dir%/src/User/Domain/Document"
+          prefix: 'App\User\Domain\Document'
+          is_bundle: false
+        Circle:
+          type: attribute
+          dir: "%kernel.project_dir%/src/Circle/Domain/Document"
+          prefix: 'App\Circle\Domain\Document'
+          is_bundle: false
+        Post:
+          type: attribute
+          dir: "%kernel.project_dir%/src/Post/Domain/Document"
+          prefix: 'App\Post\Domain\Document'
+          is_bundle: false
+        Comment:
+          type: attribute
+          dir: "%kernel.project_dir%/src/Comment/Domain/Document"
+          prefix: 'App\Comment\Domain\Document'
+          is_bundle: false
+        Vote:
+          type: attribute
+          dir: "%kernel.project_dir%/src/Vote/Domain/Document"
+          prefix: 'App\Vote\Domain\Document'
+          is_bundle: false
+        Moderation:
+          type: attribute
+          dir: "%kernel.project_dir%/src/Moderation/Domain/Document"
+          prefix: 'App\Moderation\Domain\Document'
+          is_bundle: false
+        AiSummary:
+          type: attribute
+          dir: "%kernel.project_dir%/src/AiSummary/Domain/Document"
+          prefix: 'App\AiSummary\Domain\Document'
+          is_bundle: false
 
 when@prod:
-    doctrine_mongodb:
-        auto_generate_proxy_classes: false
-        auto_generate_hydrator_classes: false
-        document_managers:
-            default:
-                metadata_cache_driver:
-                    type: service
-                    id: doctrine_mongodb.system_cache_pool
+  doctrine_mongodb:
+    auto_generate_proxy_classes: false
+    auto_generate_hydrator_classes: false
+    document_managers:
+      default:
+        metadata_cache_driver:
+          type: service
+          id: doctrine_mongodb.system_cache_pool
 
-    framework:
-        cache:
-            pools:
-                doctrine_mongodb.system_cache_pool:
-                    adapter: cache.system
+  framework:
+    cache:
+      pools:
+        doctrine_mongodb.system_cache_pool:
+          adapter: cache.system
